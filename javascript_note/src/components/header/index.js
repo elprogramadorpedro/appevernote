@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import {Navbar, Container} from 'rbx'
 import logoImage from '../../assets/images/logo.png'
