@@ -1,56 +1,64 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import '../../styles/notes.scss';
-import {push as Menu} from 'react-burger-menu';
+import React, { Fragment, useEffect, useState } from "react";
+import "../../styles/notes.scss";
+import { push as Menu } from "react-burger-menu";
 import List from "../notes/list";
-import NotesService from '../../services/notes';
+import Editor from "../notes/editor";
+import NotesService from "../../services/notes";
 import { Column, Button } from "rbx";
 
-
-const Notes =(props)=>{
-
+const Notes = (props) => {
   const [notes, setNotes] = useState([]);
-  const [current_note, setCurrentNote] = useState({ title: "", body: "", id: "" });
+  const [current_note, setCurrentNote] = useState({
+    title: "",
+    body: "",
+    id: "",
+  });
 
   async function fetchNotes() {
     const response = await NotesService.index();
     if (response.data.length >= 1) {
-      setNotes(response.data.reverse())
-      setCurrentNote(response.data[0])
-    }else {
+      setNotes(response.data.reverse());
+      setCurrentNote(response.data[0]);
+    } else {
       setNotes([]);
     }
   }
 
-
-
   const createNote = async () => {
-    await NotesService.create()
-    fetchNotes()
+    await NotesService.create();
+    fetchNotes();
+  };
+
+  const deleteNote = async (note) => {
+    await NotesService.delete(note._id);
+    fetchNotes();
+  };
+
+
+
+  const updateNote = async (oldNote, params) => {
+    const updatedNote = await NotesService.update(oldNote._id, params);
+    const index = notes.indexOf(oldNote);
+    const newNotes = notes;
+    newNotes[index] = updatedNote.data;
+    setNotes(newNotes);
+    setCurrentNote(updatedNote.data);
   }
 
-
-  const deleteNote = async(note) =>{
-      await NotesService.delete(note._id);
-      fetchNotes()
-  }
-
-
-  
   const selectNote = (id) => {
     const note = notes.find((note) => {
       return note._id == id;
-    })
+    });
     setCurrentNote(note);
-  }
-  
+  };
+
   useEffect(() => {
     fetchNotes();
   }, []);
 
-
-    return(
- <Fragment>
-<Column.Group className="notes" id="notes">
+  return (
+    <Fragment>
+      <Column.Group className="notes" id="notes">
         <Menu
           pageWrapId={"notes-editor"}
           isOpen={props.isOpen}
@@ -63,26 +71,26 @@ const Notes =(props)=>{
           <Column.Group>
             <Column size={10} offset={1}>
               Search...
-              </Column>
-            </Column.Group>
-            <List
+            </Column>
+          </Column.Group>
+          <List
             notes={notes}
             selectNote={selectNote}
-            current_note={current_note} 
+            current_note={current_note}
             deleteNote={deleteNote}
             createNote={createNote}
-            />
-      
-          </Menu>
-
+          />
+        </Menu>
 
         <Column size={12} className="notes-editor" id="notes-editor">
-          Editor...
-          </Column>
-        </Column.Group>
-</Fragment> 
-    )
-}
+          <Editor 
+          note={current_note}
+          updateNote={updateNote}
+          />
+        </Column>
+      </Column.Group>
+    </Fragment>
+  );
+};
 
 export default Notes;
-
