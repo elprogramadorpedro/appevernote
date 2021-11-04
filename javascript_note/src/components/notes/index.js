@@ -3,6 +3,7 @@ import "../../styles/notes.scss";
 import { push as Menu } from "react-burger-menu";
 import List from "../notes/list";
 import Editor from "../notes/editor";
+import Search from '../notes/search';
 import NotesService from "../../services/notes";
 import { Column, Button } from "rbx";
 
@@ -45,6 +46,13 @@ const Notes = (props) => {
     setCurrentNote(updatedNote.data);
   }
 
+  const searchNotes = async (query) => {
+    const response = await NotesService.search(query);
+    setNotes(response.data)
+  }
+
+
+
   const selectNote = (id) => {
     const note = notes.find((note) => {
       return note._id == id;
@@ -70,7 +78,7 @@ const Notes = (props) => {
         >
           <Column.Group>
             <Column size={10} offset={1}>
-              Search...
+            <Search searchNotes={searchNotes} fetchNotes={fetchNotes} />
             </Column>
           </Column.Group>
           <List
@@ -79,6 +87,7 @@ const Notes = (props) => {
             current_note={current_note}
             deleteNote={deleteNote}
             createNote={createNote}
+           
           />
         </Menu>
 
