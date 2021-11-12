@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 import { Column, Section, Title, Container, Card, Button } from "rbx";
 import "../../../styles/users.scss";
 import HeaderLogged from "../../../components/header_logged";
 import UsersEditForm from "../../../components/users/user_edit_form";
-import UsersEditPasswordForm from "../../../components/users/user_edit_password"
+import UsersEditPasswordForm from "../../../components/users/user_edit_password";
 import UsersDelete from "../../../components/users/user_delete";
 
 const UserEditScreen = () => (
@@ -15,35 +15,35 @@ const UserEditScreen = () => (
           <Column size={4}>
             <Title size={5} className="has-text-grey has-text-left">
               Informações Pessoais
-              </Title>
+            </Title>
             <Card>
               <Card.Content>
-               <UsersEditForm/>
-                </Card.Content>
-              </Card>
-            </Column>
-          </Column.Group>
+                <UsersEditForm />
+              </Card.Content>
+            </Card>
+          </Column>
+        </Column.Group>
 
         <Column.Group centered className="users-edit">
           <Column size={4}>
             <Title size={5} className="has-text-grey has-text-left">
               Password
-              </Title>
+            </Title>
             <Card>
               <Card.Content>
-              <UsersEditPasswordForm/>
-               </Card.Content>
-              </Card>
-            </Column>
-          </Column.Group>
+                <UsersEditPasswordForm />
+              </Card.Content>
+            </Card>
+          </Column>
+        </Column.Group>
         <Column.Group centered>
           <Column size={4} className="has-text-right">
-          <UsersDelete/>
-           </Column>
-           </Column.Group>
-           </Container>
-           </Section>
-           </Fragment>
+            <UsersDelete />
+          </Column>
+        </Column.Group>
+      </Container>
+    </Section>
+  </Fragment>
 );
 
-export default UserEditScreen; 
+export default UserEditScreen;

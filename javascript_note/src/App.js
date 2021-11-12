@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
 import "./App.scss";
-import Routes from './routes'
+import Routes from "./routes";
 const App = () => {
   return (
     <Fragment>
-   <Routes/>
+      <Routes />
     </Fragment>
   );
 };
 
 export default App;
-

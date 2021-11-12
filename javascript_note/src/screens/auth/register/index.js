@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import Header from "../../../components/header";
 import { Column, Section, Title, Container, Card } from "rbx";
-import logoImage from '../../../assets/images/logo.png'
-import '../../../styles/auth.scss';
-import RegisterForm from '../../../components/auth/register_form'
+import logoImage from "../../../assets/images/logo.png";
+import "../../../styles/auth.scss";
+import RegisterForm from "../../../components/auth/register_form";
 
 const RegisterScreen = () => (
   <Fragment>
@@ -31,7 +31,7 @@ const RegisterScreen = () => (
                       </Title>
                     </Column>
                   </Column.Group>
-                        <RegisterForm/>
+                  <RegisterForm />
                 </Section>
               </Card.Content>
             </Card>

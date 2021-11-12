@@ -3,7 +3,7 @@ import "../../styles/notes.scss";
 import { push as Menu } from "react-burger-menu";
 import List from "../notes/list";
 import Editor from "../notes/editor";
-import Search from '../notes/search';
+import Search from "../notes/search";
 import NotesService from "../../services/notes";
 import { Column, Button } from "rbx";
 
@@ -35,8 +35,6 @@ const Notes = (props) => {
     fetchNotes();
   };
 
-
-
   const updateNote = async (oldNote, params) => {
     const updatedNote = await NotesService.update(oldNote._id, params);
     const index = notes.indexOf(oldNote);
@@ -44,14 +42,12 @@ const Notes = (props) => {
     newNotes[index] = updatedNote.data;
     setNotes(newNotes);
     setCurrentNote(updatedNote.data);
-  }
+  };
 
   const searchNotes = async (query) => {
     const response = await NotesService.search(query);
-    setNotes(response.data)
-  }
-
-
+    setNotes(response.data);
+  };
 
   const selectNote = (id) => {
     const note = notes.find((note) => {
@@ -78,7 +74,7 @@ const Notes = (props) => {
         >
           <Column.Group>
             <Column size={10} offset={1}>
-            <Search searchNotes={searchNotes} fetchNotes={fetchNotes} />
+              <Search searchNotes={searchNotes} fetchNotes={fetchNotes} />
             </Column>
           </Column.Group>
           <List
@@ -87,15 +83,11 @@ const Notes = (props) => {
             current_note={current_note}
             deleteNote={deleteNote}
             createNote={createNote}
-           
           />
         </Menu>
 
         <Column size={12} className="notes-editor" id="notes-editor">
-          <Editor 
-          note={current_note}
-          updateNote={updateNote}
-          />
+          <Editor note={current_note} updateNote={updateNote} />
         </Column>
       </Column.Group>
     </Fragment>

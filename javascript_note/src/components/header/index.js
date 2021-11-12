@@ -14,10 +14,8 @@ function Header() {
             <img src={logoImage} />
           </Link>
           <Navbar.Burger>
-            className="navbar-burger burger" 
-            aria-label="menu"
-            aria-expanded="false" 
-            data-target="navbar-menu">
+            className="navbar-burger burger" aria-label="menu"
+            aria-expanded="false" data-target="navbar-menu">
             <span aria-hidden="true"> </span>
             <span aria-hidden="true"> </span>
             <span aria-hidden="true"> </span>
@@ -32,12 +30,22 @@ function Header() {
           >
             <Column.Group>
               <Column>
-                <Link to="/register" className="button is-white has-text-custom-purple">RegisterLink</Link>
-                </ Column>
+                <Link
+                  to="/register"
+                  className="button is-white has-text-custom-purple"
+                >
+                  RegisterLink
+                </Link>
+              </Column>
               <Column>
-                <Link to="/login" className="button is-outlined is-custom-purple">LoginLink</Link>
-                </Column>
-              </Column.Group>
+                <Link
+                  to="/login"
+                  className="button is-outlined is-custom-purple"
+                >
+                  LoginLink
+                </Link>
+              </Column>
+            </Column.Group>
           </Navbar.Segment>
         </Navbar.Menu>
       </Container>

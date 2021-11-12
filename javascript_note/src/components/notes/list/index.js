@@ -1,26 +1,28 @@
 import React, { Fragment } from "react";
 import { Button, Column, Tag, Title, List } from "rbx";
 import Moment from "moment";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ListNotes(props) {
   return (
     <Fragment>
       <Column.Group breakpoint="mobile">
         <Column size={6} offset={1}>
-          <Title size={6}>
-            {props.notes.length} Notes
-            </Title>
+          <Title size={6}>{props.notes.length} Notes</Title>
         </Column>
 
         <Column size={2}>
-  <Button state="active" color="custom-purple" outlined size="small" onClick={() => props.createNote()}>
-    Notes +
-    </Button>
-    </Column>
-
-
+          <Button
+            state="active"
+            color="custom-purple"
+            outlined
+            size="small"
+            onClick={() => props.createNote()}
+          >
+            Notes +
+          </Button>
+        </Column>
       </Column.Group>
       <List className="notes-list">
         {props.notes.map((item, key) => (
@@ -43,12 +45,12 @@ function ListNotes(props) {
                 </Tag>
               </Column>
               <Column size={2}>
-  <FontAwesomeIcon 
-    icon={faTrash} 
-    onClick={() => props.deleteNote(item)}
-    color="grey"
-  />
-</Column>
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  onClick={() => props.deleteNote(item)}
+                  color="grey"
+                />
+              </Column>
             </Column.Group>
           </List.Item>
         ))}
